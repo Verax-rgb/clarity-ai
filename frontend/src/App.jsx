@@ -1,43 +1,55 @@
 import { useState } from "react";
 
 export default function App() {
-  const [prompt, setPrompt] = useState("");
-  const [reply, setReply] = useState("");
+  const [goal, setGoal] = useState("");
+  const [breakdown, setBreakdown] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const sendPrompt = async () => {
+  const sendGoal = async () => {
+    setLoading(true);
+    setBreakdown("");
     try {
-      const res = await fetch("http://192.168.1.198:3000/api/chat", {
+      const res = await fetch("http://192.168.1.198:3000/api/breakdown", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ prompt }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ goal }),
       });
-
       const data = await res.json();
-      setReply(data.reply);
+      setBreakdown(data.breakdown);
     } catch (err) {
       console.error(err);
-      setReply("Error connecting to backend");
+      setBreakdown("Error connecting to backend");
+    } finally {
+      setLoading(false);
     }
   };
 
+  const steps = breakdown
+    ? breakdown.split("\n").filter((line) => line.trim() !== "")
+    : [];
+
   return (
-    <div style={{ padding: "2rem", fontFamily: "Arial" }}>
-      <h1>AI App</h1>
+    <div style={{ padding: "2rem", fontFamily: "Arial", maxWidth: "700px" }}>
+      <h1>ClarityAI</h1>
 
       <input
-        value={prompt}
-        onChange={(e) => setPrompt(e.target.value)}
-        placeholder="Type something"
-        style={{ padding: "8px", width: "300px", marginRight: "10px" }}
+        value={goal}
+        onChange={(e) => setGoal(e.target.value)}
+        placeholder="Enter your goal..."
+        style={{ padding: "8px", width: "400px", marginRight: "10px" }}
       />
 
-      <button onClick={sendPrompt}>Send</button>
+      <button onClick={sendGoal} disabled={loading}>
+        {loading ? "Thinking..." : "Break it down"}
+      </button>
 
-      <p style={{ marginTop: "20px" }}>
-        <strong>Reply:</strong> {reply}
-      </p>
+      {steps.length > 0 && (
+        <ul style={{ marginTop: "20px", lineHeight: "1.8" }}>
+          {steps.map((step, i) => (
+            <li key={i}>{step}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
