@@ -9,7 +9,7 @@ export default function App() {
     setLoading(true);
     setBreakdown("");
     try {
-      const res = await fetch("http://192.168.1.198:3000/api/breakdown", {
+      const res = await fetch("http://192.168.1.196:3000/api/breakdown", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ goal }),
