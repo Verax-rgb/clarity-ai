@@ -110,7 +110,7 @@ export default function App() {
   return (
     <div style={{ maxWidth: "680px", margin: "0 auto", padding: "3rem 2rem", fontFamily: "system-ui, sans-serif", color: "#111" }}>
       <h1 style={{ fontSize: "1.8rem", fontWeight: "700", marginBottom: "0.25rem" }}>Still Here</h1>
-      <p style={{ color: "#666", marginBottom: "2.5rem" }}>A recovery support guide for families and loved ones</p>
+      <p style={{ color: "#aaa", marginBottom: "2.5rem" }}>A recovery support guide for families and loved ones</p>
 
       {step === 1 && (
         <div>
@@ -152,7 +152,7 @@ export default function App() {
       {step === 4 && (
         <div>
           <h2 style={{ fontSize: "1.2rem", marginBottom: "0.5rem" }}>We want to give you the most accurate plan.</h2>
-          <p style={{ color: "#666", marginBottom: "1rem" }}>Answer honestly — there are no wrong answers.</p>
+          <p style={{ color: "#aaa", marginBottom: "1rem" }}>Answer honestly — there are no wrong answers.</p>
 
           {[
             ["Do you ever give them cash when they ask?", "giveCash"],
@@ -193,7 +193,7 @@ export default function App() {
       {step === 6 && (
         <div>
           <h2 style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>Ready to generate your plan</h2>
-          <p style={{ color: "#666", marginBottom: "2rem" }}>Based on everything you shared, we'll create a personalized recovery support plan for you and your loved one.</p>
+          <p style={{ color: "#aaa", marginBottom: "2rem" }}>Based on everything you shared, we'll create a personalized recovery support plan for you and your loved one.</p>
           {navBtns(true)}
         </div>
       )}
@@ -205,7 +205,7 @@ export default function App() {
       {plan && (
         <div style={{ marginTop: "2rem" }}>
           <h2 style={{ fontSize: "1.2rem", marginBottom: "1rem" }}>Your Recovery Support Plan</h2>
-          <div style={{ whiteSpace: "pre-wrap", lineHeight: "1.8", color: "#222" }}>{plan}</div>
+          <div style={{ whiteSpace: "pre-wrap", lineHeight: "1.8", color: "#eee" }}>{plan}</div>
         </div>
       )}
     </div>

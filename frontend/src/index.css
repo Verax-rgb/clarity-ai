@@ -109,3 +109,20 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+/* --- readability fixes --- */
+input,
+textarea,
+select {
+  color: #111111 !important;
+  background: #ffffff !important;
+}
+
+/* the generated plan output */
+pre,
+.plan {
+  color: #ececec !important;
+  background: transparent !important;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  text-align: left;
+}
